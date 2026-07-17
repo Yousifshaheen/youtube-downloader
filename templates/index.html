@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Downloader</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <main class="app">
+    <header class="app__header">
+      <h1 class="app__title">YouTube Downloader</h1>
+      <p class="app__subtitle">Paste a link, pick a quality, download.</p>
+    </header>
+
+    <section class="card">
+      <form id="url-form" class="url-form">
+        <input
+          type="text"
+          id="url-input"
+          class="url-form__input"
+          placeholder="Paste a YouTube URL..."
+          autocomplete="off"
+          required
+        >
+        <button type="submit" id="fetch-btn" class="btn btn--primary">Get Video</button>
+      </form>
+      <p id="fetch-error" class="error-text" hidden></p>
+    </section>
+
+    <div id="loader" class="loader" hidden>
+      <div class="loader__spinner"></div>
+      <p>Fetching video information...</p>
+    </div>
+
+    <section id="video-card" class="card video-card" hidden>
+      <div class="video-card__media">
+        <img id="video-thumbnail" src="" alt="Video thumbnail" class="video-card__thumbnail">
+      </div>
+      <div class="video-card__details">
+        <h2 id="video-title" class="video-card__title"></h2>
+        <ul class="video-card__meta">
+          <li><span class="meta-label">Channel</span><span id="video-channel"></span></li>
+          <li><span class="meta-label">Duration</span><span id="video-duration"></span></li>
+          <li><span class="meta-label">Uploaded</span><span id="video-date"></span></li>
+          <li><span class="meta-label">Views</span><span id="video-views"></span></li>
+        </ul>
+
+        <div class="controls">
+          <div class="control-group">
+            <label for="quality-select">Quality</label>
+            <select id="quality-select"></select>
+          </div>
+          <div class="control-group">
+            <label for="format-select">Format</label>
+            <select id="format-select">
+              <option value="mp4">MP4 (Video)</option>
+              <option value="mp3">MP3 (Audio)</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="download-btn" class="btn btn--accent">Download</button>
+        <p id="download-error" class="error-text" hidden></p>
+        <p id="download-success" class="success-text" hidden></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
